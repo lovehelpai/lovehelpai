@@ -1,0 +1,106 @@
+{
+  "app": {
+    "name": "Love Help AI",
+    "subtitle": "Your AI relationship assistant"
+  },
+  "nav": {
+    "home": "Home",
+    "analyze": "Analyze",
+    "reply": "Replies",
+    "coach": "Coach",
+    "profile": "Profile"
+  },
+  "home": {
+    "hero": "Love Help AI",
+    "subtitle": "Your AI relationship assistant",
+    "quickActions": "Quick actions",
+    "analyzeScreenshot": "Analyze screenshot",
+    "whatShouldIReply": "What should I reply",
+    "dateCoach": "Date coach",
+    "profileAnalysis": "Profile analysis"
+  },
+  "analyze": {
+    "title": "Chat analysis",
+    "upload": "Upload screenshot",
+    "uploadHint": "JPG, PNG or JPEG",
+    "analyzing": "Analyzing conversation…",
+    "interest": "Interest",
+    "flirt": "Flirt",
+    "potential": "Relationship potential",
+    "redFlags": "Red flags",
+    "greenFlags": "Green flags",
+    "recommendation": "Recommendation",
+    "suggestedReplies": "Suggested replies",
+    "summary": "Summary",
+    "submit": "Analyze",
+    "tryAgain": "Analyze again",
+    "copy": "Copy",
+    "copied": "Copied!"
+  },
+  "reply": {
+    "title": "Reply generator",
+    "placeholder": "Paste the message you want to reply to…",
+    "style": "Style",
+    "friendly": "Friendly",
+    "confident": "Confident",
+    "flirty": "Flirty",
+    "funny": "Funny",
+    "romantic": "Romantic",
+    "generate": "Generate",
+    "regenerate": "Regenerate",
+    "generating": "Generating replies…",
+    "copy": "Copy",
+    "copied": "Copied!"
+  },
+  "coach": {
+    "title": "Date coach",
+    "selectScenario": "Select scenario",
+    "describe": "Describe your situation",
+    "placeholder": "Tell us more about what happened…",
+    "getAdvice": "Get advice",
+    "loading": "Preparing advice…",
+    "situation": "Situation",
+    "advice": "Advice",
+    "avoid": "Things to avoid",
+    "messages": "Suggested messages",
+    "scenarios": {
+      "firstDate": "First date",
+      "noResponse": "No response",
+      "ghosting": "Ghosting",
+      "longDistance": "Long distance",
+      "afterFirstKiss": "After first kiss",
+      "conflict": "Relationship conflict"
+    }
+  },
+  "profile": {
+    "title": "Profile",
+    "uploadProfile": "Profile analysis",
+    "uploadHint": "Upload a profile screenshot",
+    "analyzing": "Analyzing profile…",
+    "personality": "Personality type",
+    "interests": "Interests",
+    "starters": "Conversation starters",
+    "avoid": "Topics to avoid",
+    "strategy": "Dating strategy",
+    "memory": "Relationship memory",
+    "addPerson": "Add person",
+    "personName": "Name",
+    "notes": "Notes",
+    "description": "Description",
+    "interestLevel": "Interest level",
+    "save": "Save",
+    "delete": "Delete",
+    "noMemory": "No saved people yet",
+    "language": "Language",
+    "history": "Analysis history"
+  },
+  "common": {
+    "loading": "Loading…",
+    "error": "Something went wrong",
+    "retry": "Retry",
+    "back": "Back"
+  },
+  "auth": {
+    "connecting": "Connecting Telegram…"
+  }
+}

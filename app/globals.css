@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: #f7f5ff;
+  --color-surface: #ffffff;
+  --color-surface-elevated: #f1edff;
+  --color-primary: #b9a7ff;
+  --color-primary-glow: #d1c4ff;
+  --color-accent: #cdbdff;
+  --color-accent-light: #e6ddff;
+  --color-text-primary: #2b2240;
+  --color-text-secondary: #6b628a;
+  --color-success: #6ee7b7;
+  --color-danger: #fca5a5;
+  --color-warning: #fcd34d;
+  --font-sans: var(--font-manrope), var(--font-inter), system-ui, sans-serif;
+  --radius-card: 24px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(185, 167, 255, 0.25);
+  border-radius: var(--radius-card);
+  box-shadow: 0 8px 32px rgba(43, 34, 64, 0.06);
+}
+
+.gradient-hero {
+  background: linear-gradient(135deg, #e6ddff 0%, #f7f5ff 50%, #f1edff 100%);
+}
+
+.safe-bottom {
+  padding-bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px));
+}

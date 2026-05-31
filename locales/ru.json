@@ -1,0 +1,106 @@
+{
+  "app": {
+    "name": "Love Help AI",
+    "subtitle": "Ваш AI-помощник в отношениях"
+  },
+  "nav": {
+    "home": "Главная",
+    "analyze": "Анализ",
+    "reply": "Ответы",
+    "coach": "Коуч",
+    "profile": "Профиль"
+  },
+  "home": {
+    "hero": "Love Help AI",
+    "subtitle": "Ваш AI-помощник в отношениях",
+    "quickActions": "Быстрые действия",
+    "analyzeScreenshot": "Анализ скриншота",
+    "whatShouldIReply": "Что ответить",
+    "dateCoach": "Коуч по свиданиям",
+    "profileAnalysis": "Анализ профиля"
+  },
+  "analyze": {
+    "title": "Анализ переписки",
+    "upload": "Загрузить скриншот",
+    "uploadHint": "JPG, PNG или JPEG",
+    "analyzing": "Анализируем переписку…",
+    "interest": "Интерес",
+    "flirt": "Флирт",
+    "potential": "Потенциал отношений",
+    "redFlags": "Красные флаги",
+    "greenFlags": "Зелёные флаги",
+    "recommendation": "Рекомендация",
+    "suggestedReplies": "Предложенные ответы",
+    "summary": "Краткое резюме",
+    "submit": "Анализировать",
+    "tryAgain": "Анализировать снова",
+    "copy": "Копировать",
+    "copied": "Скопировано!"
+  },
+  "reply": {
+    "title": "Генератор ответов",
+    "placeholder": "Вставьте сообщение, на которое нужно ответить…",
+    "style": "Стиль",
+    "friendly": "Дружелюбный",
+    "confident": "Уверенный",
+    "flirty": "Флиртующий",
+    "funny": "Смешной",
+    "romantic": "Романтичный",
+    "generate": "Сгенерировать",
+    "regenerate": "Перегенерировать",
+    "generating": "Генерируем ответы…",
+    "copy": "Копировать",
+    "copied": "Скопировано!"
+  },
+  "coach": {
+    "title": "Коуч по свиданиям",
+    "selectScenario": "Выберите сценарий",
+    "describe": "Опишите ситуацию",
+    "placeholder": "Расскажите подробнее о том, что произошло…",
+    "getAdvice": "Получить совет",
+    "loading": "Готовим совет…",
+    "situation": "Ситуация",
+    "advice": "Совет",
+    "avoid": "Чего избегать",
+    "messages": "Предложенные сообщения",
+    "scenarios": {
+      "firstDate": "Первое свидание",
+      "noResponse": "Нет ответа",
+      "ghosting": "Игнор",
+      "longDistance": "На расстоянии",
+      "afterFirstKiss": "После первого поцелуя",
+      "conflict": "Конфликт в отношениях"
+    }
+  },
+  "profile": {
+    "title": "Профиль",
+    "uploadProfile": "Анализ профиля",
+    "uploadHint": "Загрузите скриншот профиля",
+    "analyzing": "Анализируем профиль…",
+    "personality": "Тип личности",
+    "interests": "Интересы",
+    "starters": "Темы для начала разговора",
+    "avoid": "Темы, которых стоит избегать",
+    "strategy": "Стратегия знакомства",
+    "memory": "Память об отношениях",
+    "addPerson": "Добавить человека",
+    "personName": "Имя",
+    "notes": "Заметки",
+    "description": "Описание",
+    "interestLevel": "Уровень интереса",
+    "save": "Сохранить",
+    "delete": "Удалить",
+    "noMemory": "Пока нет сохранённых людей",
+    "language": "Язык",
+    "history": "История анализов"
+  },
+  "common": {
+    "loading": "Загрузка…",
+    "error": "Что-то пошло не так",
+    "retry": "Повторить",
+    "back": "Назад"
+  },
+  "auth": {
+    "connecting": "Подключаем Telegram…"
+  }
+}

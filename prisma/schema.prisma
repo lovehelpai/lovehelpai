@@ -1,0 +1,64 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                    String                 @id @default(cuid())
+  telegramId            String                 @unique
+  username              String?
+  firstName             String?
+  photoUrl              String?
+  createdAt             DateTime               @default(now())
+  conversationAnalyses  ConversationAnalysis[]
+  relationshipProfiles  RelationshipProfile[]
+  scenarios             Scenario[]
+}
+
+model ConversationAnalysis {
+  id                    String   @id @default(cuid())
+  userId                String
+  user                  User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  imageUrl              String?
+  summary               String
+  interestScore         Int
+  flirtScore            Int
+  relationshipPotential Int
+  redFlags              String[]
+  greenFlags            String[]
+  recommendation        String
+  nextMessages          String[]
+  createdAt             DateTime @default(now())
+
+  @@index([userId])
+}
+
+model RelationshipProfile {
+  id            String   @id @default(cuid())
+  userId        String
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  personName    String
+  description   String?
+  interestLevel Int      @default(50)
+  notes         String?
+  lastInteraction DateTime?
+  createdAt     DateTime @default(now())
+
+  @@index([userId])
+}
+
+model Scenario {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type      String
+  context   String
+  result    String   @db.Text
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+}
