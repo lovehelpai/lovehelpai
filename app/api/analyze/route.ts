@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { AuthError, requireUser } from "@/lib/auth";
-import { openai, MODEL } from "@/lib/openai";
+import { getOpenAI, MODEL } from "@/lib/openai";
 import { prisma } from "@/lib/prisma";
 import { getMemoryContext } from "@/lib/memory";
 import { extractJson } from "@/lib/ai-json";
@@ -38,7 +38,8 @@ export async function POST(request: Request) {
         : "image/jpeg";
     const dataUrl = `data:${mime};base64,${base64}`;
 
-    const memoryContext = await getMemoryContext(user.id);
+    const memoryContext = await getMemoryContext(user.id); 
+    const openai = getOpenAI();
 
     const completion = await openai.chat.completions.create({
       model: MODEL,
