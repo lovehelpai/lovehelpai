@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { AuthError, requireUser } from "@/lib/auth";
-import { getOpenAI, MODEL } from "@/lib/openai";
+import { openai, MODEL } from "@/lib/openai";
 import { prisma } from "@/lib/prisma";
 import { getMemoryContext } from "@/lib/memory";
 import { extractJson } from "@/lib/ai-json";
@@ -23,23 +23,28 @@ interface AnalysisResult {
 export async function POST(request: Request) {
   try {
     const user = await requireUser(request);
+
     const formData = await request.formData();
     const image = formData.get("image");
 
     if (!image || !(image instanceof Blob)) {
-      return NextResponse.json({ error: "Image file required" }, { status: 400 });
+      return NextResponse.json(
+        { error: "Image file required" },
+        { status: 400 }
+      );
     }
 
     const buffer = Buffer.from(await image.arrayBuffer());
     const base64 = buffer.toString("base64");
+
     const mime =
       image.type && image.type.startsWith("image/")
         ? image.type
         : "image/jpeg";
+
     const dataUrl = `data:${mime};base64,${base64}`;
 
-    const memoryContext = await getMemoryContext(user.id); 
-    const openai = getOpenAI();
+    const memoryContext = await getMemoryContext(user.id);
 
     const completion = await openai.chat.completions.create({
       model: MODEL,
@@ -48,8 +53,17 @@ export async function POST(request: Request) {
         {
           role: "user",
           content: [
-            { type: "text", text: buildAnalysisUserPrompt(memoryContext) },
-            { type: "image_url", image_url: { url: dataUrl, detail: "high" } },
+            {
+              type: "text",
+              text: buildAnalysisUserPrompt(memoryContext),
+            },
+            {
+              type: "image_url",
+              image_url: {
+                url: dataUrl,
+                detail: "high",
+              },
+            },
           ],
         },
       ],
@@ -58,8 +72,12 @@ export async function POST(request: Request) {
     });
 
     const raw = completion.choices[0]?.message?.content;
+
     if (!raw) {
-      return NextResponse.json({ error: "No AI response" }, { status: 502 });
+      return NextResponse.json(
+        { error: "No AI response" },
+        { status: 502 }
+      );
     }
 
     const result = extractJson<AnalysisResult>(raw);
@@ -69,8 +87,14 @@ export async function POST(request: Request) {
         userId: user.id,
         imageUrl: null,
         summary: result.summary,
-        interestScore: Math.min(100, Math.max(0, Math.round(result.interestScore))),
-        flirtScore: Math.min(100, Math.max(0, Math.round(result.flirtScore))),
+        interestScore: Math.min(
+          100,
+          Math.max(0, Math.round(result.interestScore))
+        ),
+        flirtScore: Math.min(
+          100,
+          Math.max(0, Math.round(result.flirtScore))
+        ),
         relationshipPotential: Math.min(
           100,
           Math.max(0, Math.round(result.relationshipPotential))
@@ -97,7 +121,12 @@ export async function POST(request: Request) {
     if (error instanceof AuthError) {
       return NextResponse.json({ error: error.message }, { status: 401 });
     }
+
     console.error("[analyze]", error);
-    return NextResponse.json({ error: "Analysis failed" }, { status: 500 });
+
+    return NextResponse.json(
+      { error: "Analysis failed" },
+      { status: 500 }
+    );
   }
 }
