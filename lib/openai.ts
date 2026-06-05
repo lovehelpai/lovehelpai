@@ -7,15 +7,23 @@ export const openai = new OpenAI({
   baseURL: "https://openrouter.ai/api/v1",
 });
 
+type Role = "system" | "user" | "assistant";
+
+type Message =
+  | {
+      role: Role;
+      content: string;
+    }
+  | {
+      role: Role;
+      content: {
+        type: "text";
+        text: string;
+      }[];
+    };
+
 type ChatParams = {
-  messages: {
-    role: "system" | "user" | "assistant";
-    content: string | {
-      type: string;
-      text?: string;
-      image_url?: { url: string; detail?: string };
-    }[];
-  }[];
+  messages: Message[];
   temperature?: number;
   max_tokens?: number;
 };
@@ -26,7 +34,7 @@ export const openaiClient = {
       create: async (params: ChatParams) => {
         return openai.chat.completions.create({
           model: MODEL,
-          messages: params.messages as any,
+          messages: params.messages,
           temperature: params.temperature ?? 0.7,
           max_tokens: params.max_tokens ?? 2000,
         });
