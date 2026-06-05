@@ -1,34 +1,35 @@
+import OpenAI from "openai";
+
 export const MODEL = "openai/gpt-4o-mini";
 
-export const openai = {
+export const openai = new OpenAI({
+  apiKey: process.env.OPENROUTER_API_KEY!,
+  baseURL: "https://openrouter.ai/api/v1",
+});
+
+type ChatParams = {
+  messages: {
+    role: "system" | "user" | "assistant";
+    content: string | {
+      type: string;
+      text?: string;
+      image_url?: { url: string; detail?: string };
+    }[];
+  }[];
+  temperature?: number;
+  max_tokens?: number;
+};
+
+export const openaiClient = {
   chat: {
     completions: {
-      create: async (params: any) => {
-        const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-          method: "POST",
-          headers: {
-            "Authorization": `Bearer ${process.env.OPENROUTER_API_KEY}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            model: MODEL,
-            messages: params.messages,
-            temperature: params.temperature ?? 0.7,
-            max_tokens: params.max_tokens ?? 2000,
-          }),
+      create: async (params: ChatParams) => {
+        return openai.chat.completions.create({
+          model: MODEL,
+          messages: params.messages as any,
+          temperature: params.temperature ?? 0.7,
+          max_tokens: params.max_tokens ?? 2000,
         });
-
-        const data = await res.json();
-
-        return {
-          choices: [
-            {
-              message: {
-                content: data.choices?.[0]?.message?.content || "",
-              },
-            },
-          ],
-        };
       },
     },
   },
