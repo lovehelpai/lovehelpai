@@ -1,6 +1,6 @@
 import OpenAI from "openai";
 
-export const MODEL = "openai/gpt-4o-mini";
+export const MODEL = "meta-llama/llama-3.1-8b-instruct";
 
 export const openai = new OpenAI({
   apiKey: process.env.OPENROUTER_API_KEY!,
