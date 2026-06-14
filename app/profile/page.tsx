@@ -40,6 +40,8 @@ export default function ProfilePage() {
   const [insight, setInsight] = useState<ProfileInsightData | null>(null);
   const [profiles, setProfiles] = useState<RelationshipProfile[]>([]);
   const [history, setHistory] = useState<HistoryItem[]>([]);
+  const [selectedAnalysis, setSelectedAnalysis] =
+  useState<HistoryItem | null>(null);
   const [showForm, setShowForm] = useState(false);
   const [form, setForm] = useState({
     personName: "",
@@ -292,28 +294,113 @@ export default function ProfilePage() {
         </div>
       )}
 
-      {tab === "history" && (
-        <div className="space-y-3">
-          {history.length === 0 && (
-            <p className="py-8 text-center text-sm text-text-secondary">
-              {t("profile.noMemory")}
-            </p>
-          )}
-          {history.map((h) => (
-            <div key={h.id} className="glass-card p-4">
-              <p className="text-sm text-text-primary line-clamp-2">
-                {h.summary}
-              </p>
-              <div className="mt-2 flex gap-3 text-xs text-text-secondary">
-                <span>{h.interestScore}%</span>
-                <span>{h.flirtScore}%</span>
-                <span>{h.relationshipPotential}%</span>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
+{tab === "history" && (
+  <div className="space-y-3">
+    {history.length === 0 && (
+      <p className="py-8 text-center text-sm text-text-secondary">
+        {t("profile.noMemory")}
+      </p>
+    )}
 
+    {history.map((h) => (
+      <button
+        key={h.id}
+        type="button"
+        onClick={() => setSelectedAnalysis(h)}
+        className="glass-card w-full p-4 text-left transition hover:scale-[1.01]"
+      >
+        <p className="text-sm text-text-primary line-clamp-2">
+          {h.summary}
+        </p>
+
+        <div className="mt-3 grid grid-cols-3 gap-2 text-center">
+          <div>
+            <p className="text-[10px] text-text-secondary">
+              Interest
+            </p>
+            <p className="font-semibold text-primary">
+              {h.interestScore}%
+            </p>
+          </div>
+
+          <div>
+            <p className="text-[10px] text-text-secondary">
+              Flirt
+            </p>
+            <p className="font-semibold text-primary">
+              {h.flirtScore}%
+            </p>
+          </div>
+
+          <div>
+            <p className="text-[10px] text-text-secondary">
+              Potential
+            </p>
+            <p className="font-semibold text-primary">
+              {h.relationshipPotential}%
+            </p>
+          </div>
+        </div>
+      </button>
+    ))}
+  </div>
+)}
+
+{selectedAnalysis && (
+  <div
+    className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+    onClick={() => setSelectedAnalysis(null)}
+  >
+    <div
+      className="glass-card max-h-[80vh] w-full max-w-md overflow-y-auto p-5"
+      onClick={(e) => e.stopPropagation()}
+    >
+      <h3 className="mb-4 text-lg font-bold">
+        Analysis
+      </h3>
+
+      <p className="mb-4 whitespace-pre-wrap text-sm text-text-primary">
+        {selectedAnalysis.summary}
+      </p>
+
+      <div className="space-y-3">
+        <div>
+          <p className="text-xs text-text-secondary">
+            Interest Level
+          </p>
+          <p className="font-semibold">
+            {selectedAnalysis.interestScore}%
+          </p>
+        </div>
+
+        <div>
+          <p className="text-xs text-text-secondary">
+            Flirt Level
+          </p>
+          <p className="font-semibold">
+            {selectedAnalysis.flirtScore}%
+          </p>
+        </div>
+
+        <div>
+          <p className="text-xs text-text-secondary">
+            Relationship Potential
+          </p>
+          <p className="font-semibold">
+            {selectedAnalysis.relationshipPotential}%
+          </p>
+        </div>
+      </div>
+
+      <Button
+        className="mt-5 w-full"
+        onClick={() => setSelectedAnalysis(null)}
+      >
+        Close
+      </Button>
+    </div>
+  </div>
+)}
       {error && (
         <p className="mt-4 rounded-2xl bg-danger/20 p-3 text-sm">{error}</p>
       )}
