@@ -4,20 +4,23 @@ export async function POST(req: Request) {
   try {
     const update = await req.json();
 
+    console.log("📩 Telegram update:", JSON.stringify(update));
+
     const message = update?.message;
     const text = message?.text;
     const chatId = message?.chat?.id;
 
-    // если это не сообщение — просто отвечаем OK
     if (!text || !chatId) {
       return NextResponse.json({ ok: true });
     }
 
-    // ⚡ APPSS VERIFY
     if (text === "/appss_verify") {
-      // важно: НЕ await (чтобы не блокировать webhook)
-      fetch(
-        `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`,
+      const token = process.env.TELEGRAM_BOT_TOKEN;
+
+      console.log("🔑 token exists:", !!token);
+
+      const res = await fetch(
+        `https://api.telegram.org/bot${token}/sendMessage`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -28,15 +31,13 @@ export async function POST(req: Request) {
         }
       );
 
-      // сразу отвечаем Telegram
-      return NextResponse.json({ ok: true });
+      const data = await res.json();
+      console.log("📤 telegram response:", data);
     }
 
-    // остальные сообщения (если есть бот логика)
     return NextResponse.json({ ok: true });
-
   } catch (error) {
-    console.error("telegram webhook error:", error);
+    console.error("❌ webhook error:", error);
     return NextResponse.json({ ok: true });
   }
 }
