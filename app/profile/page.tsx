@@ -307,7 +307,7 @@ export default function ProfilePage() {
         key={h.id}
         type="button"
         onClick={() => setSelectedAnalysis(h)}
-        className="glass-card w-full p-4 text-left transition hover:scale-[1.01]"
+        className="glass-card w-full cursor-pointer p-4 text-left transition hover:scale-[1.02] active:scale-[0.98]"
       >
         <p className="text-sm text-text-primary line-clamp-2">
           {h.summary}
@@ -316,7 +316,7 @@ export default function ProfilePage() {
         <div className="mt-3 grid grid-cols-3 gap-2 text-center">
           <div>
             <p className="text-[10px] text-text-secondary">
-              Interest
+              Интерес
             </p>
             <p className="font-semibold text-primary">
               {h.interestScore}%
@@ -325,7 +325,7 @@ export default function ProfilePage() {
 
           <div>
             <p className="text-[10px] text-text-secondary">
-              Flirt
+              Флирт
             </p>
             <p className="font-semibold text-primary">
               {h.flirtScore}%
@@ -334,7 +334,7 @@ export default function ProfilePage() {
 
           <div>
             <p className="text-[10px] text-text-secondary">
-              Potential
+              Потенциал
             </p>
             <p className="font-semibold text-primary">
               {h.relationshipPotential}%
@@ -366,7 +366,7 @@ export default function ProfilePage() {
       <div className="space-y-3">
         <div>
           <p className="text-xs text-text-secondary">
-            Interest Level
+            Уровень интереса
           </p>
           <p className="font-semibold">
             {selectedAnalysis.interestScore}%
@@ -375,7 +375,7 @@ export default function ProfilePage() {
 
         <div>
           <p className="text-xs text-text-secondary">
-            Flirt Level
+            Уровень флирта
           </p>
           <p className="font-semibold">
             {selectedAnalysis.flirtScore}%
@@ -384,7 +384,7 @@ export default function ProfilePage() {
 
         <div>
           <p className="text-xs text-text-secondary">
-            Relationship Potential
+            Потенциал отношений
           </p>
           <p className="font-semibold">
             {selectedAnalysis.relationshipPotential}%

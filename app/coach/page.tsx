@@ -12,32 +12,32 @@ import { cn } from "@/lib/utils";
 const scenarios = [
   {
     id: "firstDate",
-    title: "First Date",
+    title: "Первое свидание",
     emoji: "☕",
   },
   {
     id: "noResponse",
-    title: "No Response",
+    title: "Нет ответа",
     emoji: "⏳",
   },
   {
     id: "ghosting",
-    title: "Ghosting",
+    title: "Гостинг",
     emoji: "👻",
   },
   {
     id: "longDistance",
-    title: "Long Distance",
+    title: "На расстоянии",
     emoji: "🌍",
   },
   {
     id: "afterFirstKiss",
-    title: "After First Kiss",
+    title: "После первого поцелуя",
     emoji: "💋",
   },
   {
     id: "conflict",
-    title: "Relationship Conflict",
+    title: "Конфликт в отношениях",
     emoji: "💔",
   },
 ];
@@ -99,10 +99,10 @@ export default function CoachPage() {
                   type="button"
                   onClick={() => setScenario(item.id)}
                   className={cn(
-                    "glass-card rounded-3xl p-4 text-left transition-all",
+                    "glass-card rounded-3xl p-4 text-left transition-all cursor-pointer",
                     scenario === item.id
-                      ? "border-2 border-primary bg-primary/10 shadow-lg"
-                      : "hover:scale-[1.02]"
+                      ? "scale-[1.03] border-2 border-primary bg-primary/20 ring-2 ring-primary/40 shadow-xl"
+                      : "opacity-80 hover:opacity-100 hover:scale-[1.02]"
                   )}
                 >
                   <div className="mb-2 text-2xl">
